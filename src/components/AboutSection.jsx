@@ -31,7 +31,7 @@ const TAB_DATA = [
         content: (
             <ul>
                 <li>Professional License in Information Systems Engineering and Software Development</li>
-                <li>Master's in Software Engineering</li>
+                <li>Master&apos;s in Software Engineering</li>
             </ul>
         )
     }
