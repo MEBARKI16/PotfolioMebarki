@@ -7,7 +7,7 @@ const TAB_DATA = [
         title: "Skills",
         id: "skills",
         content: (
-            <ul>
+            <ul className="list-disc pl-2">
                 <li>JavaScript</li>
                 <li>React</li>
                 <li>Next</li>
@@ -20,7 +20,7 @@ const TAB_DATA = [
         title: "Education",
         id: "education",
         content: (
-            <ul>
+            <ul className="list-disc pl-2">
                 <li>Houari Boumediene University of Science and Technology (USTHB)</li>
             </ul>
         )
@@ -29,7 +29,7 @@ const TAB_DATA = [
         title: "Certification",
         id: "certification",
         content: (
-            <ul>
+            <ul className="list-disc pl-2">
                 <li>Professional License in Information Systems Engineering and Software Development</li>
                 <li>Master&apos;s in Software Engineering</li>
             </ul>
