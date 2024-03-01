@@ -1,5 +1,6 @@
 import AboutSection from "@/components/AboutSection";
 import EmailSection from "@/components/EmailSection";
+import FooterSection from "@/components/FooterSection";
 import HeroSection from "@/components/HeroSection";
 import Navbar from "@/components/Navbar";
 import ProjectsSection from "@/components/ProjectsSection";
@@ -14,6 +15,7 @@ export default function Home() {
         <ProjectsSection />
         <EmailSection />
       </div>
+      <FooterSection />
     </main>
   );
 }
