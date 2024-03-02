@@ -4,7 +4,7 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 
 export default async function handler(req, res) {
     const { body } = req;
-    const { sender, subject, message } = body;
+    const { email, subject, message } = body;
     if (req.method === 'POST') {
         try {
             const data = await resend.emails.send({
@@ -12,7 +12,7 @@ export default async function handler(req, res) {
                 to: ['medaminemebarki@gmail.com'],
                 subject: subject,
                 react: <>
-                    <p>from : {sender}</p>
+                    <p>from : {email}</p>
                     <p>message : {message}</p>
                 </>,
             });

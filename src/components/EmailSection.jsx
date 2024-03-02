@@ -4,12 +4,15 @@ import Link from 'next/link';
 const EmailSection = () => {
     const [isSubmitted, setIsSubmitted] = useState(false);
     const [successMessage, setSuccessMessage] = useState('');
+    const [errorMessage, setErrorMessage] = useState(''); // Ajout pour gérer les erreurs
+
     const handleSubmit = async (event) => {
         event.preventDefault();
+        setIsSubmitted(false); // Réinitialiser l'état de soumission
+        setErrorMessage(''); // Réinitialiser les messages d'erreur
+
         const formData = new FormData(event.target);
-        const formProps = Object.fromEntries(formData);
-        console.log(formProps)
-        const { email, subject, message } = formProps;
+        const { email, subject, message } = Object.fromEntries(formData);
 
         try {
             const response = await fetch('/api/SendMail', {
@@ -24,19 +27,25 @@ const EmailSection = () => {
                 }),
             });
 
-            event.target.reset();
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+            await response.json();
             setIsSubmitted(true);
             setSuccessMessage('Message submitted successfully!');
+
+            event.target.reset();
+
             setTimeout(() => {
                 setIsSubmitted(false);
                 setSuccessMessage('');
             }, 5000);
-
         } catch (error) {
             console.error("Erreur lors de l'envoi du message : ", error);
+            setErrorMessage("Failed to submit the message. Please try again.");
         }
     };
-
     return (
         <section className="grid md:grid-cols-2 py-24 my-12 md:py-12 gap-4">
             <div>
@@ -51,11 +60,18 @@ const EmailSection = () => {
                         <FaLinkedin className="text-white text-4xl" />
                     </Link>
                 </div>
-                {isSubmitted && (
-                    <div className="text-green-500 text-center my-4">
-                        {successMessage}
-                    </div>
-                )}
+                <div>
+                    {isSubmitted && (
+                        <div className="text-green-500 text-center my-4">
+                            {successMessage}
+                        </div>
+                    )}
+                    {errorMessage && (
+                        <div className="text-red-500 text-center my-4">
+                            {errorMessage}
+                        </div>
+                    )}
+                </div>
             </div>
             <div>
                 <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
