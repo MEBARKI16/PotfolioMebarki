@@ -60,18 +60,6 @@ const EmailSection = () => {
                         <FaLinkedin className="text-white text-4xl" />
                     </Link>
                 </div>
-                <div>
-                    {isSubmitted && (
-                        <div className="text-green-500 text-center my-4">
-                            {successMessage}
-                        </div>
-                    )}
-                    {errorMessage && (
-                        <div className="text-red-500 text-center my-4">
-                            {errorMessage}
-                        </div>
-                    )}
-                </div>
             </div>
             <div>
                 <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
@@ -95,6 +83,18 @@ const EmailSection = () => {
                     <button className="bg-[#00bf8f] text-white font-medium py-2.5 px-5 w-full rounded-lg">
                         Submit
                     </button>
+                    <div>
+                        {isSubmitted && (
+                            <div className="text-green-500 text-left my-4">
+                                {successMessage}
+                            </div>
+                        )}
+                        {errorMessage && (
+                            <div className="text-red-500 text-left my-4">
+                                {errorMessage}
+                            </div>
+                        )}
+                    </div>
                 </form>
             </div>
         </section>
